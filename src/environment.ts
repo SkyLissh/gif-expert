@@ -1,1 +1,1 @@
-export const API_KEY: string = "arDVLl6vbx6fklCIyuV6VoZpxpx544aN";
+export const API_KEY: string = process.env.REACT_APP_GIPHY_KEY || "";
