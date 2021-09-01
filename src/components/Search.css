@@ -1,0 +1,24 @@
+.search {
+	border-bottom: 3px solid var(--accent-dark);
+
+	display: flex;
+}
+
+.search__input {
+	font-family: var(--font-family);
+	font-size: 1em;
+	font-weight: 600;
+
+	color: var(--accent-dark);
+	background: none;
+
+	border: none;
+
+	flex: 1 1 0%;
+}
+.search__input:focus-visible {
+	outline: none;
+}
+.search__input::placeholder {
+	color: var(--accent-dark);
+}

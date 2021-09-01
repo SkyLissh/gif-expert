@@ -1,0 +1,30 @@
+.button {
+	padding: 0.5em 2em;
+
+	font-size: 1em;
+	font-family: var(--font-family);
+	font-weight: 600;
+
+	color: var(--fg-color);
+	background: var(--bg-gradient);
+
+	border: none;
+	border-radius: 8px;
+
+	display: inline-block;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.button--icon {
+	padding: 0;
+
+	color: var(--accent-dark);
+	background: none;
+}
+
+.button .material-icons {
+	font-size: 2em;
+}

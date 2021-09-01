@@ -1,0 +1,15 @@
+.topbar {
+	padding: 1em;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.topbar__title {
+	margin: 0;
+
+	font-size: 2em;
+	font-weight: 600;
+
+	color: var(--accent-dark);
+}

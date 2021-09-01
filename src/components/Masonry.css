@@ -1,0 +1,46 @@
+.masonry {
+	padding: 1em;
+}
+
+.masonry__title {
+	font-size: 1.3em;
+
+	text-align: left;
+	color: var(--accent-dark);
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.masonry__icon {
+	margin-right: 0.5em;
+
+	font-size: 32px;
+	font-weight: bold;
+
+	background: var(--fg-gradient);
+	background-clip: unset;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.masonry__container {
+	margin: 0;
+
+	columns: 2;
+}
+
+.masonry__item {
+	margin-bottom: 1em;
+
+	border-radius: 8px;
+}
+
+.masonry__img {
+	width: 100%;
+
+	border-radius: 8px;
+
+	display: block;
+}
