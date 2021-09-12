@@ -56,7 +56,7 @@ async function fetchData<T>(
 		const data = (await response.json()) as T;
 
 		dispatch({ type: "fetched", payload: data });
-	} catch (error) {
+	} catch (error: any) {
 		dispatch({ type: "error", payload: error });
 	}
 }
