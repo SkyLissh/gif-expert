@@ -1,4 +1,4 @@
-.masonry {
+.masonry__container {
 	padding: 1em;
 }
 
@@ -25,16 +25,43 @@
 	-webkit-text-fill-color: transparent;
 }
 
-.masonry__container {
-	margin: 0;
+.masonry {
+	width: 100%;
 
-	columns: 2;
+	margin: 0;
+}
+.masonry::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.masonry--resizer,
+.masonry__item {
+	width: calc(50% - 0.5em);
 }
 
 .masonry__item {
 	margin-bottom: 1em;
 
 	border-radius: 8px;
+	transition: opacity 0.2s ease-in-out;
+
+	background-position: center center;
+	/* background-color: var(--accent); */
+	background-repeat: no-repeat;
+}
+
+.masonry__item--loading {
+	/* width: 50%; */
+	/* height: 130px; */
+
+	background-color: var(--accent);
+	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/loading.gif");
+}
+
+.masonry__item--loading .masonry__img {
+	opacity: 0;
 }
 
 .masonry__img {

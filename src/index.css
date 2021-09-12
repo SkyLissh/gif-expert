@@ -19,6 +19,7 @@
 html,
 body {
 	background-color: var(--bg-color);
+	/* width: 100%; */
 }
 
 body {
