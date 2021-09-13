@@ -6,14 +6,7 @@ import useFetch from "../hooks/useFetch";
 import GifResponse from "../models/GifResponse";
 import MasonryLayout from "./MasonryLayout";
 
-type Props = {
-	itemSelector: string;
-	columnWidth: number | string;
-	gutter: number;
-	percentPosition: boolean;
-};
-
-export default function Masonry(props: Props): ReactElement {
+export default function Masonry(): ReactElement {
 	const initUrl = new URL("https://api.giphy.com/v1/gifs/trending");
 	initUrl.searchParams.append("api_key", API_KEY);
 	initUrl.searchParams.append("limit", "13");
