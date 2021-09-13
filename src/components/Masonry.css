@@ -29,6 +29,9 @@
 	width: 100%;
 
 	margin: 0;
+	padding: 0;
+
+	list-style: none;
 }
 .masonry::after {
 	content: "";
@@ -50,14 +53,23 @@
 	background-position: center center;
 	/* background-color: var(--accent); */
 	background-repeat: no-repeat;
+
+	list-style: none;
 }
 
 .masonry__item--loading {
-	/* width: 50%; */
-	/* height: 130px; */
-
 	background-color: var(--accent);
 	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/loading.gif");
+}
+
+.masonry__item--loading-1 {
+	height: 130px;
+}
+.masonry__item--loading-2 {
+	height: 91px;
+}
+.masonry__item--loading-3 {
+	height: 200px;
 }
 
 .masonry__item--loading .masonry__img {
