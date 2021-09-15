@@ -24,6 +24,10 @@ export default function MasonryLayout(props: Props): ReactElement {
 				percentPosition: props.percentPosition
 			});
 
+			setTimeout(() => {
+				masonry.layout!();
+			}, 500);
+
 			imagesLoaded(refMasonry.current).on("progress", (instance, image) => {
 				image!.img.parentElement!.className = image!.isLoaded
 					? props.itemSelector
