@@ -3,7 +3,7 @@
 }
 
 .masonry__title {
-	font-size: 1.3em;
+	font-size: 20px;
 
 	text-align: left;
 	color: var(--accent-dark);
@@ -14,7 +14,7 @@
 }
 
 .masonry__icon {
-	margin-right: 0.5em;
+	margin-right: 0.2em;
 
 	font-size: 32px;
 	font-weight: bold;
@@ -62,16 +62,6 @@
 	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/loading.gif");
 }
 
-.masonry__item--loading-1 {
-	height: 130px;
-}
-.masonry__item--loading-2 {
-	height: 91px;
-}
-.masonry__item--loading-3 {
-	height: 200px;
-}
-
 .masonry__item--loading .masonry__img {
 	opacity: 0;
 }
@@ -82,4 +72,30 @@
 	border-radius: 8px;
 
 	display: block;
+}
+
+@media screen and (min-width: 768px) {
+	.masonry__container {
+		max-width: 1200px;
+
+		padding: 0;
+		margin: 0 auto;
+	}
+
+	.masonry__title {
+		font-size: 26px;
+	}
+
+	.masonry__icon {
+		font-size: 38px;
+	}
+
+	.masonry--resizer,
+	.masonry__item {
+		width: calc(25% - 0.8em);
+	}
+
+	.masonry__item {
+		margin-bottom: 1em;
+	}
 }
