@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import getWidth from "src/helpers/getWidth";
+import getHeight from "src/helpers/getHeight";
 
 import Gif from "src/models/Gif";
 
@@ -14,7 +14,7 @@ export default function GifItem(props: Props): ReactElement {
 			className="masonry__item masonry__item--loading"
 			key={props.gif.id}
 			style={{
-				height: getWidth(
+				height: getHeight(
 					props.screenWidth,
 					Number(props.gif.images.original.width),
 					Number(props.gif.images.original.height)
