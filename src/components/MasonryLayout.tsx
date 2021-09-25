@@ -16,7 +16,6 @@ export default function MasonryLayout(props: Props): ReactElement {
 	const refMasonry = useRef<HTMLUListElement>(null);
 
 	useEffect(() => {
-		console.log("ref", refMasonry.current);
 		if (refMasonry.current) {
 			const masonry = new Masonry(refMasonry.current, {
 				itemSelector: `.${props.itemSelector}`,
@@ -24,20 +23,16 @@ export default function MasonryLayout(props: Props): ReactElement {
 				gutter: props.gutter,
 				percentPosition: props.percentPosition
 			});
-			console.log("masonry", masonry);
-
-			setTimeout(() => {
-				masonry.layout!();
-			}, 500);
 
 			imagesLoaded(refMasonry.current).on("progress", (instance, image) => {
+				image!.img.parentElement!.style.removeProperty("height");
 				image!.img.parentElement!.className = image!.isLoaded
 					? props.itemSelector
 					: `${props.itemSelector} ${props.itemSelector}--broken`;
 				masonry.layout!();
 			});
 		}
-	});
+	}, [refMasonry, props]);
 
 	return (
 		<ul className={props.className} ref={refMasonry}>
