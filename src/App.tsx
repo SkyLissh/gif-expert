@@ -1,13 +1,13 @@
 import React, { ReactElement, UIEvent } from "react";
 
-import Topbar from "./components/Topbar";
-import Masonry from "./components/Masonry";
+import Topbar from "src/components/Topbar";
+import GifSection from "src/components/GifSection";
 
 export default function App(): ReactElement {
 	return (
 		<div className="App" onScroll={scroll}>
 			<Topbar />
-			<Masonry />
+			<GifSection />
 		</div>
 	);
 }
