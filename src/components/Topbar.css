@@ -13,3 +13,10 @@
 
 	color: var(--accent-dark);
 }
+
+@media screen and (min-width: 768px) {
+	.topbar {
+		max-width: 1250px;
+		margin: 0 auto;
+	}
+}

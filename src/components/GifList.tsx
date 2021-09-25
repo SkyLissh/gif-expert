@@ -6,11 +6,13 @@ import { QueryFunctionContext, useInfiniteQuery } from "react-query";
 import MasonryLayout from "src/components/MasonryLayout";
 import GifResponse from "src/models/GifResponse";
 import GifItem from "src/components/GifItem";
-import useWindowSize from "src/hooks/useWindowSize";
 
-export default function GifList(): ReactElement {
+interface Props {
+	width: number;
+}
+
+export default function GifList({ width }: Props): ReactElement {
 	const url: string = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_GIPHY_KEY}&limit=12`;
-	const { width } = useWindowSize();
 
 	const gifsQuery = useInfiniteQuery("gifs", fetchGifs, {
 		getNextPageParam: (lastPage) => {

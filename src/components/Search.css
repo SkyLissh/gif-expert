@@ -1,7 +1,9 @@
 .search {
+	width: 39em;
+
 	border-bottom: 3px solid var(--accent-dark);
 
-	display: flex;
+	display: none;
 }
 
 .search__input {
@@ -21,4 +23,12 @@
 }
 .search__input::placeholder {
 	color: var(--accent-dark);
+}
+
+@media screen and (min-width: 768px) {
+	.search {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
