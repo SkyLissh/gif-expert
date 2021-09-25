@@ -16,6 +16,7 @@ export default function MasonryLayout(props: Props): ReactElement {
 	const refMasonry = useRef<HTMLUListElement>(null);
 
 	useEffect(() => {
+		console.log("ref", refMasonry.current);
 		if (refMasonry.current) {
 			const masonry = new Masonry(refMasonry.current, {
 				itemSelector: `.${props.itemSelector}`,
@@ -23,6 +24,7 @@ export default function MasonryLayout(props: Props): ReactElement {
 				gutter: props.gutter,
 				percentPosition: props.percentPosition
 			});
+			console.log("masonry", masonry);
 
 			setTimeout(() => {
 				masonry.layout!();
