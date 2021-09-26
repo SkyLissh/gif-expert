@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 
 import InfiniteScroll from "react-infinite-scroller";
-import { QueryFunctionContext, useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 
 import MasonryLayout from "src/components/MasonryLayout";
 import GifResponse from "src/models/GifResponse";
@@ -12,19 +12,23 @@ interface Props {
 }
 
 export default function GifList({ width }: Props): ReactElement {
-	const url: string = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_GIPHY_KEY}&limit=12`;
+	const url: string = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_GIPHY_KEY}&limit=20`;
 
-	const gifsQuery = useInfiniteQuery("gifs", fetchGifs, {
-		getNextPageParam: (lastPage) => {
-			if (lastPage.pagination.offset < lastPage.pagination.total_count) {
-				return lastPage.pagination.offset + 20;
+	const gifsQuery = useInfiniteQuery(
+		"gifs",
+		({ pageParam = 0 }) => fetchGifs(pageParam),
+		{
+			getNextPageParam: (lastPage) => {
+				if (lastPage.pagination.offset < lastPage.pagination.total_count) {
+					return lastPage.pagination.offset + 20;
+				}
+				return undefined;
 			}
-			return undefined;
 		}
-	});
+	);
 
-	async function fetchGifs(queryOptions: QueryFunctionContext): Promise<GifResponse> {
-		const res = await fetch(`${url}&offset=${queryOptions.pageParam}`);
+	async function fetchGifs(pageParam: number): Promise<GifResponse> {
+		const res = await fetch(`${url}&offset=${pageParam}`);
 		return (await res.json()) as GifResponse;
 	}
 
