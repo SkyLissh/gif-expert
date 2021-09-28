@@ -9,11 +9,10 @@ import GifItem from "src/components/GifItem";
 
 interface Props {
 	width: number;
+	url: string;
 }
 
-export default function GifList({ width }: Props): ReactElement {
-	const url: string = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_GIPHY_KEY}&limit=20`;
-
+export default function GifList({ width, url }: Props): ReactElement {
 	const gifsQuery = useInfiniteQuery(
 		"gifs",
 		({ pageParam = 0 }) => fetchGifs(pageParam),
@@ -28,6 +27,8 @@ export default function GifList({ width }: Props): ReactElement {
 	);
 
 	async function fetchGifs(pageParam: number): Promise<GifResponse> {
+		console.log(`Fetching url ${url}`);
+		console.log(`Fetching page ${pageParam}`);
 		const res = await fetch(`${url}&offset=${pageParam}`);
 		return (await res.json()) as GifResponse;
 	}
