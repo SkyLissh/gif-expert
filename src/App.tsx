@@ -1,21 +1,22 @@
-import React, { ReactElement, UIEvent } from "react";
+import React, { ReactElement } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Topbar from "src/components/Topbar";
-import GifSection from "src/components/GifSection";
-
-import useWindowSize from "src/hooks/useWindowSize";
+import HomePage from "src/pages/HomePage";
+import SearchPage from "src/pages/SearchPage";
 
 export default function App(): ReactElement {
-	const { width } = useWindowSize();
-
 	return (
-		<div className="App" onScroll={scroll}>
-			<Topbar width={width} />
-			<GifSection width={width} />
-		</div>
+		<Router>
+			<Topbar />
+			<Switch>
+				<Route path="/" exact>
+					<HomePage />
+				</Route>
+				<Route path="/search/:tag">
+					<SearchPage />
+				</Route>
+			</Switch>
+		</Router>
 	);
-}
-
-function scroll(e: UIEvent<HTMLElement>): void {
-	console.log(e.target);
 }
