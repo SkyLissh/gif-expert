@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.css";
+import "src/components/Button.css";
 
 interface Props {
 	iconStyle?: boolean;
