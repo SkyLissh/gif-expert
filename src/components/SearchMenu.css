@@ -1,0 +1,27 @@
+.search-menu {
+	z-index: 1;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	padding: 1em;
+
+	background: var(--bg-color);
+}
+
+.search-menu__header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+@media screen and (min-width: 769px) {
+	.search-menu {
+		display: none;
+	}
+}

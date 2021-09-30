@@ -1,28 +1,21 @@
 import React, { ReactElement } from "react";
 import "src/components/Search.css";
-import { Button } from "src/components/Button";
-import { useHistory } from "react-router-dom";
+import Button from "src/components/Button";
 
 interface Props {
 	handleTagChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 	tag: string;
 }
 
-export default function Search({ tag, handleTagChange }: Props): ReactElement {
-	const history = useHistory();
-
-	function handleSearch(e: React.FormEvent<HTMLFormElement>): void {
-		e.preventDefault();
-		history.push(`/search/${tag}`);
-	}
-
+export default function Search({ handleTagChange, onSubmit, tag }: Props): ReactElement {
 	return (
-		<form className="search" onSubmit={handleSearch}>
+		<form className="search" onSubmit={onSubmit}>
 			<input
 				className="search__input"
 				type="text"
-				id="search"
 				placeholder="Search amazing GIFs..."
+				value={tag}
 				onInput={handleTagChange}
 			/>
 			<Button iconStyle>

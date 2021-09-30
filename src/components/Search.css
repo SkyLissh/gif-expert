@@ -1,9 +1,8 @@
 .search {
-	width: 39em;
-
 	border-bottom: 3px solid var(--accent-dark);
 
-	display: none;
+	display: flex;
+	flex: 1 1 auto;
 }
 
 .search__input {
@@ -16,7 +15,7 @@
 
 	border: none;
 
-	flex: 1 1 0%;
+	flex: 1 1;
 }
 .search__input:focus-visible {
 	outline: none;
@@ -30,5 +29,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		flex: 0 0 50%;
 	}
 }

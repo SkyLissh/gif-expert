@@ -5,6 +5,10 @@
 	justify-content: space-between;
 }
 
+.topbar > .search {
+	display: none;
+}
+
 .topbar__title {
 	margin: 0;
 
@@ -16,6 +20,7 @@
 
 .topbar__link {
 	text-decoration: none;
+	color: inherit;
 }
 .topbar__link:active {
 	color: inherit;
@@ -25,5 +30,13 @@
 	.topbar {
 		max-width: 1250px;
 		margin: 0 auto;
+	}
+
+	.topbar > .button {
+		display: none;
+	}
+
+	.topbar > .search {
+		display: flex;
 	}
 }
