@@ -14,6 +14,10 @@
 	display: inline-block;
 }
 
+.button > a {
+	color: inherit;
+}
+
 .button:hover {
 	cursor: pointer;
 }
