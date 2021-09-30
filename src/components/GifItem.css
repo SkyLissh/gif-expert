@@ -1,0 +1,37 @@
+.gif__item {
+	width: calc(50% - 0.5em);
+
+	margin-bottom: 1em;
+
+	border-radius: 8px;
+	transition: opacity 0.2s ease-in-out;
+
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	list-style: none;
+}
+
+.gif__item--loading {
+	background-color: var(--accent);
+	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/loading.gif");
+}
+
+.gif__item--loading .gif__img {
+	opacity: 0;
+}
+
+.gif__img {
+	width: 100%;
+
+	border-radius: 8px;
+
+	display: block;
+}
+
+@media screen and (min-width: 768px) {
+	.gif__item {
+		width: calc(25% - 0.8em);
+		margin-bottom: 1em;
+	}
+}

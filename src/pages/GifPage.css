@@ -1,0 +1,45 @@
+.gif__container {
+	padding: 1em;
+
+	height: 70%;
+}
+
+.gif__title {
+	font-size: 20px;
+
+	text-align: left;
+	color: var(--accent-dark);
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.gif__icon {
+	margin-right: 0.2em;
+
+	font-size: 32px;
+	font-weight: bold;
+
+	background: var(--fg-gradient);
+	background-clip: unset;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@media screen and (min-width: 768px) {
+	.gif__container {
+		max-width: 1200px;
+
+		padding: 0;
+		margin: 0 auto;
+	}
+
+	.gif__title {
+		font-size: 26px;
+	}
+
+	.gif__icon {
+		font-size: 38px;
+	}
+}

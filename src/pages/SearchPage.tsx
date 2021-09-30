@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { useParams } from "react-router";
-import "src/components/Masonry.css";
+import "src/pages/GifPage.css";
 
 import { API_KEY } from "src/environment";
 import useWindowSize from "src/hooks/useWindowSize";
@@ -16,9 +16,9 @@ export default function SearchPage(): ReactElement {
 	const { width } = useWindowSize();
 
 	return (
-		<main className="masonry__container">
-			<h2 className="masonry__title">
-				<span className="masonry__icon material-icons">search</span>
+		<main className="gif__container">
+			<h2 className="gif__title">
+				<span className="gif__icon material-icons">search</span>
 				{toTitleCase(tag)}
 			</h2>
 			<GifList width={width} url={urlSearch} />

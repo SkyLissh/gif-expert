@@ -1,11 +1,13 @@
 import React, { ReactElement } from "react";
-
 import InfiniteScroll from "react-infinite-scroller";
 import { useInfiniteQuery } from "react-query";
+
+import "src/components/GifList.css";
 
 import MasonryLayout from "src/components/MasonryLayout";
 import GifResponse from "src/models/GifResponse";
 import GifItem from "src/components/GifItem";
+import Loading from "src/components/Loading";
 
 interface Props {
 	width: number;
@@ -37,9 +39,9 @@ export default function GifList({ width, url }: Props): ReactElement {
 		return <div>Error: {gifsQuery.error.message}</div>;
 	}
 
-	// if (!gifsQuery.data) {
-	// 	return <div>Loading...</div>;
-	// }
+	if (!gifsQuery.data) {
+		return <Loading />;
+	}
 
 	return (
 		// ignore the warning about the infinite scroll
@@ -48,9 +50,9 @@ export default function GifList({ width, url }: Props): ReactElement {
 			loadMore={gifsQuery.fetchNextPage as (page: number) => void}
 		>
 			<MasonryLayout
-				className="masonry"
-				itemSelector="masonry__item"
-				columnWidth="masonry--resizer"
+				className="gif__list"
+				itemSelector="gif__item"
+				columnWidth="gif__resizer"
 				gutter={16}
 				percentPosition={true}
 			>
@@ -58,7 +60,6 @@ export default function GifList({ width, url }: Props): ReactElement {
 					page.data.map((gif) => <GifItem key={gif.id} gif={gif} screenWidth={width} />)
 				)}
 			</MasonryLayout>
-			{gifsQuery.isFetching && <div>Loading...</div>}
 		</InfiniteScroll>
 	);
 }

@@ -1,0 +1,23 @@
+.gif__list {
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+}
+.gif__list::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.gif__resizer {
+	width: calc(50% - 0.5em);
+}
+
+@media screen and (min-width: 768px) {
+	.gif__resizer {
+		width: calc(25% - 0.8em);
+	}
+}
