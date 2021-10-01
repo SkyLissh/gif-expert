@@ -3,6 +3,11 @@
 
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+}
+
+.topbar > .search {
+	display: none;
 }
 
 .topbar__title {
@@ -14,9 +19,25 @@
 	color: var(--accent-dark);
 }
 
+.topbar__link {
+	text-decoration: none;
+	color: inherit;
+}
+.topbar__link:active {
+	color: inherit;
+}
+
 @media screen and (min-width: 768px) {
 	.topbar {
 		max-width: 1250px;
 		margin: 0 auto;
+	}
+
+	.topbar > .button {
+		display: none;
+	}
+
+	.topbar > .search {
+		display: flex;
 	}
 }

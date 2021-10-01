@@ -1,6 +1,8 @@
 import React, { ReactElement } from "react";
-import getHeight from "src/helpers/getHeight";
 
+import "src/components/GifItem.css";
+
+import getHeight from "src/helpers/getHeight";
 import Gif from "src/models/Gif";
 
 interface Props {
@@ -11,7 +13,7 @@ interface Props {
 export default function GifItem(props: Props): ReactElement {
 	return (
 		<li
-			className="masonry__item masonry__item--loading"
+			className="gif__item gif__item--loading"
 			key={props.gif.id}
 			style={{
 				height: getHeight(
@@ -22,7 +24,7 @@ export default function GifItem(props: Props): ReactElement {
 			}}
 		>
 			<img
-				className="masonry__img"
+				className="gif__img"
 				src={props.gif.images.original.webp}
 				alt={props.gif.title}
 				loading="lazy"

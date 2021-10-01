@@ -1,19 +1,20 @@
 import React, { ReactElement } from "react";
-
 import InfiniteScroll from "react-infinite-scroller";
 import { useInfiniteQuery } from "react-query";
+
+import "src/components/GifList.css";
 
 import MasonryLayout from "src/components/MasonryLayout";
 import GifResponse from "src/models/GifResponse";
 import GifItem from "src/components/GifItem";
+import Loading from "src/components/Loading";
 
 interface Props {
 	width: number;
+	url: string;
 }
 
-export default function GifList({ width }: Props): ReactElement {
-	const url: string = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_GIPHY_KEY}&limit=20`;
-
+export default function GifList({ width, url }: Props): ReactElement {
 	const gifsQuery = useInfiniteQuery(
 		"gifs",
 		({ pageParam = 0 }) => fetchGifs(pageParam),
@@ -28,6 +29,8 @@ export default function GifList({ width }: Props): ReactElement {
 	);
 
 	async function fetchGifs(pageParam: number): Promise<GifResponse> {
+		console.log(`Fetching url ${url}`);
+		console.log(`Fetching page ${pageParam}`);
 		const res = await fetch(`${url}&offset=${pageParam}`);
 		return (await res.json()) as GifResponse;
 	}
@@ -36,9 +39,9 @@ export default function GifList({ width }: Props): ReactElement {
 		return <div>Error: {gifsQuery.error.message}</div>;
 	}
 
-	// if (!gifsQuery.data) {
-	// 	return <div>Loading...</div>;
-	// }
+	if (!gifsQuery.data) {
+		return <Loading />;
+	}
 
 	return (
 		// ignore the warning about the infinite scroll
@@ -47,9 +50,9 @@ export default function GifList({ width }: Props): ReactElement {
 			loadMore={gifsQuery.fetchNextPage as (page: number) => void}
 		>
 			<MasonryLayout
-				className="masonry"
-				itemSelector="masonry__item"
-				columnWidth="masonry--resizer"
+				className="gif__list"
+				itemSelector="gif__item"
+				columnWidth="gif__resizer"
 				gutter={16}
 				percentPosition={true}
 			>
@@ -57,7 +60,6 @@ export default function GifList({ width }: Props): ReactElement {
 					page.data.map((gif) => <GifItem key={gif.id} gif={gif} screenWidth={width} />)
 				)}
 			</MasonryLayout>
-			{gifsQuery.isFetching && <div>Loading...</div>}
 		</InfiniteScroll>
 	);
 }
