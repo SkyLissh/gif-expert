@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useInfiniteQuery } from "react-query";
 
@@ -29,22 +29,27 @@ export default function GifList({ width, url }: Props): ReactElement {
 	);
 
 	async function fetchGifs(pageParam: number): Promise<GifResponse> {
-		console.log(`Fetching url ${url}`);
-		console.log(`Fetching page ${pageParam}`);
 		const res = await fetch(`${url}&offset=${pageParam}`);
 		return (await res.json()) as GifResponse;
 	}
+
+	useEffect(() => {
+		// Clean up the query when the component unmounts
+		return () => {
+			gifsQuery.remove();
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	if (gifsQuery.error instanceof Error) {
 		return <div>Error: {gifsQuery.error.message}</div>;
 	}
 
-	if (!gifsQuery.data) {
+	if (gifsQuery.isLoading) {
 		return <Loading />;
 	}
 
 	return (
-		// ignore the warning about the infinite scroll
 		<InfiniteScroll
 			hasMore={gifsQuery.hasNextPage}
 			loadMore={gifsQuery.fetchNextPage as (page: number) => void}
