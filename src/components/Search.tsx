@@ -1,22 +1,24 @@
 import React, { ReactElement } from "react";
+
 import "src/components/Search.css";
+
 import Button from "src/components/Button";
 
 interface Props {
-	handleTagChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-	tag: string;
+	value: string;
+	onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export default function Search({ handleTagChange, onSubmit, tag }: Props): ReactElement {
+export default function Search({ value, onInput, onSubmit }: Props): ReactElement {
 	return (
 		<form className="search" onSubmit={onSubmit}>
 			<input
 				className="search__input"
 				type="text"
 				placeholder="Search amazing GIFs..."
-				value={tag}
-				onInput={handleTagChange}
+				value={value}
+				onChange={onInput}
 			/>
 			<Button iconStyle>
 				<span className="material-icons">search</span>

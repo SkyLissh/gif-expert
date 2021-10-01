@@ -4,21 +4,22 @@ import { useQuery } from "react-query";
 import "src/components/SearchMenu.css";
 import { API_KEY } from "src/environment";
 
-import Search from "src/components/Search";
-import Loading from "src/components/Loading";
 import Button from "src/components/Button";
 
 interface Props {
-	onSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	// value: string;
+	children: React.ReactNode;
+	// onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	onHide: () => void;
-	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-	tag: string;
+	// onSearch: (value?: string, e?: React.FormEvent<HTMLFormElement>) => void;
+	// onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+	onSuggestion: (value: string) => void;
 }
 
 const SearchMenu = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 	const url: string = `https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`;
 
-	const { data, error, isLoading } = useQuery<string[]>("terms", fetchTerms);
+	const { data, error } = useQuery<string[]>("terms", fetchTerms);
 
 	async function fetchTerms(): Promise<string[]> {
 		const res = await fetch(url);
@@ -29,10 +30,6 @@ const SearchMenu = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 		return <div>Error: {error.message}</div>;
 	}
 
-	if (isLoading) {
-		return <Loading />;
-	}
-
 	return (
 		<div className="search-menu hidden" ref={ref}>
 			<header className="search-menu__header">
@@ -40,15 +37,18 @@ const SearchMenu = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 					<span className="material-icons">arrow_back_ios</span>
 				</Button>
 
-				<Search
-					handleTagChange={props.onSearch}
-					onSubmit={props.onSubmit}
-					tag={props.tag}
-				/>
+				{props.children}
 			</header>
-			<ul>
+			<ul className="suggest__list">
 				{data?.map((term: string) => (
-					<li key={term}>{term}</li>
+					<li
+						className="suggest__item"
+						key={term}
+						onClick={() => props.onSuggestion(term)}
+					>
+						{term}
+						<span className="material-icons">chevron_right</span>
+					</li>
 				))}
 			</ul>
 		</div>

@@ -16,15 +16,20 @@ export default function Topbar(): ReactElement {
 		setTag(e.target.value);
 	}
 
-	function toggleSearchMenu(): void {
+	function toggleSearch(): void {
 		refSearch.current?.classList.toggle("hidden");
 	}
 
-	function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
+	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
-		toggleSearchMenu();
-		setTag("");
+		toggleSearch();
 		history.push(`/search/${tag}`);
+	}
+
+	function handleSuggestion(value: string): void {
+		setTag(value);
+		history.push(`/search/${value}`);
+		toggleSearch();
 	}
 
 	return (
@@ -34,17 +39,13 @@ export default function Topbar(): ReactElement {
 					GIF Expert
 				</Link>
 			</h1>
-			<Search tag={tag} handleTagChange={handleTagChange} onSubmit={onSubmit} />
-			<Button iconStyle onClick={toggleSearchMenu}>
+			<Search value={tag} onInput={handleTagChange} onSubmit={handleSubmit} />
+			<Button iconStyle onClick={toggleSearch}>
 				<span className="material-icons">search</span>
 			</Button>
-			<SearchMenu
-				ref={refSearch}
-				tag={tag}
-				onSearch={handleTagChange}
-				onHide={toggleSearchMenu}
-				onSubmit={onSubmit}
-			/>
+			<SearchMenu ref={refSearch} onHide={toggleSearch} onSuggestion={handleSuggestion}>
+				<Search value={tag} onInput={handleTagChange} onSubmit={handleSubmit} />
+			</SearchMenu>
 		</nav>
 	);
 }
