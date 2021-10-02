@@ -16,21 +16,25 @@ export default function Topbar(): ReactElement {
 		setTag(e.target.value);
 	}
 
-	function toggleSearch(): void {
-		refSearch.current?.classList.toggle("hidden");
-		document.body.classList.toggle("lock");
+	function hideSearch(): void {
+		refSearch.current?.classList.add("hidden");
+		document.body.classList.remove("lock");
+	}
+
+	function showSearch(): void {
+		refSearch.current?.classList.remove("hidden");
+		document.body.classList.add("lock");
 	}
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
-		toggleSearch();
-		console.log(tag);
-		history.push(`/search/${tag}`);
+		hideSearch();
+		history.push(`/search/${tag.toLocaleLowerCase()}`);
 	}
 
 	function handleSuggestion(value: string): void {
 		setTag(value);
-		toggleSearch();
+		hideSearch();
 		history.push(`/search/${value}`);
 	}
 
@@ -42,10 +46,10 @@ export default function Topbar(): ReactElement {
 				</Link>
 			</h1>
 			<Search value={tag} onInput={handleTagChange} onSubmit={handleSubmit} />
-			<Button iconStyle onClick={toggleSearch}>
+			<Button iconStyle onClick={showSearch}>
 				<span className="material-icons">search</span>
 			</Button>
-			<SearchMenu ref={refSearch} onHide={toggleSearch} onSuggestion={handleSuggestion}>
+			<SearchMenu ref={refSearch} onHide={hideSearch} onSuggestion={handleSuggestion}>
 				<Search alt value={tag} onInput={handleTagChange} onSubmit={handleSubmit} />
 			</SearchMenu>
 		</nav>

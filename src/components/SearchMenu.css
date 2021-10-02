@@ -11,7 +11,7 @@
 	background-color: var(--accent-dark);
 	opacity: 1;
 	clip-path: circle(150% at top right);
-	transition: clip-path 0.5s ease-out;
+	transition: clip-path 0.3s ease-out;
 }
 .search-menu__overlay.hidden {
 	opacity: 0;
@@ -67,7 +67,7 @@
 }
 
 @media screen and (min-width: 769px) {
-	.search-menu {
+	.search-menu__overlay {
 		display: none;
 	}
 }
