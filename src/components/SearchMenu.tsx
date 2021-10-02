@@ -31,26 +31,28 @@ const SearchMenu = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 	}
 
 	return (
-		<div className="search-menu hidden" ref={ref}>
-			<header className="search-menu__header">
-				<Button iconStyle onClick={props.onHide}>
-					<span className="material-icons">arrow_back_ios</span>
-				</Button>
+		<div className="search-menu__overlay hidden" ref={ref}>
+			<div className="search-menu">
+				<header className="search-menu__header">
+					<Button alt iconStyle onClick={props.onHide}>
+						<span className="material-icons">arrow_back_ios</span>
+					</Button>
 
-				{props.children}
-			</header>
-			<ul className="suggest__list">
-				{data?.map((term: string) => (
-					<li
-						className="suggest__item"
-						key={term}
-						onClick={() => props.onSuggestion(term)}
-					>
-						{term}
-						<span className="material-icons">chevron_right</span>
-					</li>
-				))}
-			</ul>
+					{props.children}
+				</header>
+				<ul className="suggest__list">
+					{data?.map((term: string) => (
+						<li
+							className="suggest__item"
+							key={term}
+							onClick={() => props.onSuggestion(term)}
+						>
+							{term}
+							<span className="material-icons">chevron_right</span>
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 });
