@@ -46,7 +46,7 @@ export default function Topbar(): ReactElement {
 				<span className="material-icons">search</span>
 			</Button>
 			<SearchMenu ref={refSearch} onHide={toggleSearch} onSuggestion={handleSuggestion}>
-				<Search value={tag} onInput={handleTagChange} onSubmit={handleSubmit} />
+				<Search alt value={tag} onInput={handleTagChange} onSubmit={handleSubmit} />
 			</SearchMenu>
 		</nav>
 	);

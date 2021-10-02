@@ -29,6 +29,13 @@
 	background: none;
 }
 
+.button--alt {
+	color: var(--accent-dark);
+}
+.button--alt.button--icon {
+	color: var(--bg-color);
+}
+
 .button .material-icons {
 	font-size: 1.6em;
 }
