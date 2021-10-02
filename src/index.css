@@ -1,6 +1,7 @@
 :root {
 	--bg-color: #d9dbee;
-	--fg-color: #ffffff;
+	--fg-color: #eeeeee;
+	--placeholder-color: #b5b8ce;
 	--accent: #a973ef;
 	--accent-light: #d9bbfe;
 	--accent-dark: #595b83;
@@ -19,7 +20,6 @@
 html,
 body {
 	background-color: var(--bg-color);
-	/* width: 100%; */
 }
 
 body {
@@ -42,7 +42,8 @@ code {
 }
 
 .hidden {
-	display: none;
+	opacity: 0;
+	transition: opacity 0.3s ease-in;
 }
 
 .lock {
