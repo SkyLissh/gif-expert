@@ -18,18 +18,20 @@ export default function Topbar(): ReactElement {
 
 	function toggleSearch(): void {
 		refSearch.current?.classList.toggle("hidden");
+		document.body.classList.toggle("lock");
 	}
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
 		toggleSearch();
+		console.log(tag);
 		history.push(`/search/${tag}`);
 	}
 
 	function handleSuggestion(value: string): void {
 		setTag(value);
-		history.push(`/search/${value}`);
 		toggleSearch();
+		history.push(`/search/${value}`);
 	}
 
 	return (
