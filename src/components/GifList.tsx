@@ -34,12 +34,13 @@ export default function GifList({ width, url }: Props): ReactElement {
 	}
 
 	useEffect(() => {
+		console.log(url);
 		// Clean up the query when the component unmounts
 		return () => {
 			gifsQuery.remove();
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [url]);
 
 	if (gifsQuery.error instanceof Error) {
 		return <div>Error: {gifsQuery.error.message}</div>;
