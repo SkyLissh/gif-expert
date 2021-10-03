@@ -1,5 +1,7 @@
 import React, { ReactElement, useRef } from "react";
 
+import "src/components/GifContainer.css";
+
 import useWindowSize from "src/hooks/useWindowSize";
 import useClipboard from "src/hooks/useClipboard";
 
