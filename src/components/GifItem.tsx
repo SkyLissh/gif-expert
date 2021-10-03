@@ -15,6 +15,7 @@ export default function GifItem(props: Props): ReactElement {
 		<li
 			className="gif__item gif__item--loading"
 			key={props.gif.id}
+			data-clipboard-text={props.gif.images.original.url}
 			style={{
 				height: getHeight(
 					props.screenWidth,

@@ -11,6 +11,10 @@
 
 	list-style: none;
 }
+.gif__item:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
 
 .gif__item--loading {
 	background-color: var(--accent);
@@ -19,6 +23,7 @@
 
 .gif__item--loading .gif__img {
 	opacity: 0;
+	transition: opacity 0.2s ease-in-out;
 }
 
 .gif__img {

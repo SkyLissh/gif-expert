@@ -1,0 +1,45 @@
+.tooltip {
+	position: fixed;
+	bottom: 5%;
+	left: 50%;
+
+	opacity: 1;
+	visibility: visible;
+
+	padding: 0.6em 1.5em;
+
+	transform: translate(-50%, -50%);
+	transition: opacity 0.3s ease-in, bottom 0.3s ease-in, visibility 0.1s ease-in;
+	border-radius: 8px;
+	background-color: var(--accent-dark);
+
+	display: block;
+}
+
+.tooltip__text {
+	margin: 0;
+
+	color: var(--fg-color);
+
+	font-size: 0.8em;
+	font-weight: normal;
+}
+
+.tooltip--hidden {
+	bottom: 0;
+
+	opacity: 0;
+	visibility: hidden;
+
+	transition: opacity 0.3s ease-out, bottom 0.3s ease-out, visibility 0.5s ease-out;
+}
+
+@media screen and (min-width: 768px) {
+	.tooltip {
+		padding: 0.8em 2em;
+	}
+
+	.tooltip__text {
+		font-size: 0.9em;
+	}
+}
