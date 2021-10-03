@@ -17,12 +17,12 @@ export default function Topbar(): ReactElement {
 	}
 
 	function hideSearch(): void {
-		refSearch.current?.classList.add("hidden");
+		refSearch.current?.classList.add("search-menu--hidden");
 		document.body.classList.remove("lock");
 	}
 
 	function showSearch(): void {
-		refSearch.current?.classList.remove("hidden");
+		refSearch.current?.classList.remove("search-menu--hidden");
 		document.body.classList.add("lock");
 	}
 

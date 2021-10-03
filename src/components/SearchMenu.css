@@ -1,7 +1,7 @@
 .search-menu__overlay {
 	z-index: 1;
 
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 
@@ -13,7 +13,7 @@
 	clip-path: circle(150% at top right);
 	transition: clip-path 0.3s ease-out;
 }
-.search-menu__overlay.hidden {
+.search-menu--hidden {
 	opacity: 0;
 	clip-path: circle(0 at top right);
 	transition: clip-path 0.3s ease-in, opacity 0.3s ease-in;
@@ -36,7 +36,7 @@
 	transition: opacity 0.5s;
 }
 
-.search-menu__overlay.hidden .search-menu {
+.search-menu--hidden .search-menu {
 	opacity: 0;
 	transition: opacity 0.3s;
 }

@@ -7,12 +7,8 @@ import { API_KEY } from "src/environment";
 import Button from "src/components/Button";
 
 interface Props {
-	// value: string;
 	children: React.ReactNode;
-	// onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	onHide: () => void;
-	// onSearch: (value?: string, e?: React.FormEvent<HTMLFormElement>) => void;
-	// onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 	onSuggestion: (value: string) => void;
 }
 
@@ -31,7 +27,7 @@ const SearchMenu = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 	}
 
 	return (
-		<div className="search-menu__overlay hidden" ref={ref}>
+		<div className="search-menu__overlay search-menu--hidden" ref={ref}>
 			<div className="search-menu">
 				<header className="search-menu__header">
 					<Button alt iconStyle onClick={props.onHide}>
