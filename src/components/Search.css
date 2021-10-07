@@ -2,13 +2,15 @@
 	border-bottom: 3px solid var(--accent-dark);
 
 	display: flex;
-	flex: 1 1 auto;
+	flex: auto;
 }
 .search--alt {
 	border-bottom: 3px solid var(--bg-color);
 }
 
 .search__input {
+	width: 0;
+
 	font-family: var(--font-family);
 	font-size: 1em;
 	font-weight: 600;
@@ -17,8 +19,7 @@
 	background: none;
 
 	border: none;
-
-	flex: 1 1;
+	flex: auto;
 }
 .search__input:focus-visible {
 	outline: none;
