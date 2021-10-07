@@ -18,7 +18,7 @@
 
 .gif__item--loading {
 	background-color: var(--accent);
-	background-image: url("http://localhost:3000/loading.svg");
+	background-image: url("https://gifexpert.skylissh.me/loading.svg");
 	background-size: 4rem;
 }
 
