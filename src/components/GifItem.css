@@ -18,19 +18,28 @@
 
 .gif__item--loading {
 	background-color: var(--accent);
-	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/loading.gif");
+	background-image: url("http://localhost:3000/loading.svg");
+	background-size: 4rem;
 }
 
 .gif__item--loading .gif__img {
 	opacity: 0;
-	transition: opacity 0.2s ease-in-out;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .gif__img {
 	width: 100%;
 
 	border-radius: 8px;
+	opacity: 1;
 
+	display: block;
+}
+
+.gif__item > .spinner {
+	display: none;
+}
+.gif__item--loading > .spinner {
 	display: block;
 }
 
