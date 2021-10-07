@@ -15,24 +15,35 @@ interface Props {
 export default function MasonryLayout(props: Props): ReactElement {
 	const refMasonry = useRef<HTMLUListElement>(null);
 
-	useEffect(() => {
-		if (refMasonry.current) {
-			const masonry = new Masonry(refMasonry.current, {
-				itemSelector: `.${props.itemSelector}`,
-				columnWidth: `.${props.columnWidth}`,
-				gutter: props.gutter,
-				percentPosition: props.percentPosition
-			});
+	function onLoad(
+		instance: ImagesLoaded.ImagesLoaded,
+		image?: ImagesLoaded.LoadingImage
+	): void {
+		image!.img.parentElement!.style.removeProperty("height");
+		image!.img.parentElement!.className = image!.isLoaded
+			? props.itemSelector
+			: `${props.itemSelector} ${props.itemSelector}--broken`;
+	}
 
-			imagesLoaded(refMasonry.current).on("progress", (instance, image) => {
-				image!.img.parentElement!.style.removeProperty("height");
-				image!.img.parentElement!.className = image!.isLoaded
-					? props.itemSelector
-					: `${props.itemSelector} ${props.itemSelector}--broken`;
-				masonry.layout!();
-			});
-		}
-	}, [refMasonry, props]);
+	useEffect(() => {
+		console.log(`Masonry Element: ${refMasonry.current}`);
+		if (!refMasonry.current) return;
+		const masonry = new Masonry(refMasonry.current, {
+			itemSelector: `.${props.itemSelector}`,
+			columnWidth: `.${props.columnWidth}`,
+			gutter: props.gutter,
+			percentPosition: props.percentPosition
+		});
+
+		const imgsLoaded = imagesLoaded(refMasonry.current);
+		imgsLoaded.on("progress", onLoad);
+
+		return () => {
+			masonry.destroy!();
+			imgsLoaded.off("progress", onLoad);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<ul className={props.className} ref={refMasonry}>

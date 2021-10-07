@@ -1,6 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 
 import "src/components/GifItem.css";
+
+import useIntersection from "src/hooks/useIntersection";
 
 import getHeight from "src/helpers/getHeight";
 import Gif from "src/models/Gif";
@@ -10,26 +12,28 @@ interface Props {
 	screenWidth: number;
 }
 
-export default function GifItem(props: Props): ReactElement {
+export default function GifItem({ gif, screenWidth }: Props): ReactElement {
+	const [inView, setInView] = useState(false);
+	const imgRef = useRef<HTMLLIElement>(null);
+	useIntersection(imgRef, () => setInView(true));
+
 	return (
 		<li
 			className="gif__item gif__item--loading"
-			key={props.gif.id}
-			data-clipboard-text={props.gif.images.original.url}
+			key={gif.id}
+			data-clipboard-text={gif.images.original.url}
+			ref={imgRef}
 			style={{
 				height: getHeight(
-					props.screenWidth,
-					Number(props.gif.images.original.width),
-					Number(props.gif.images.original.height)
+					screenWidth,
+					Number(gif.images.original.width),
+					Number(gif.images.original.height)
 				)
 			}}
 		>
-			<img
-				className="gif__img"
-				src={props.gif.images.original.webp}
-				alt={props.gif.title}
-				loading="lazy"
-			/>
+			{inView && (
+				<img className="gif__img" src={gif.images.original.webp} alt={gif.title} />
+			)}
 		</li>
 	);
 }
