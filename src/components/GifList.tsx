@@ -34,7 +34,6 @@ export default function GifList({ width, url }: Props): ReactElement {
 	}
 
 	useEffect(() => {
-		console.log(url);
 		// Clean up the query when the component unmounts
 		return () => {
 			gifsQuery.remove();
@@ -52,6 +51,7 @@ export default function GifList({ width, url }: Props): ReactElement {
 
 	return (
 		<InfiniteScroll
+			className="gif__scroller"
 			hasMore={gifsQuery.hasNextPage}
 			loadMore={gifsQuery.fetchNextPage as (page: number) => void}
 		>

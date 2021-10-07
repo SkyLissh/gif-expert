@@ -9,7 +9,6 @@ interface Props {
 	columnWidth: number | string;
 	gutter?: number;
 	percentPosition?: boolean;
-	onProgress?: ImagesLoaded.ImagesLoadedListener;
 }
 
 export default function MasonryLayout(props: Props): ReactElement {
@@ -26,28 +25,22 @@ export default function MasonryLayout(props: Props): ReactElement {
 	}
 
 	useEffect(() => {
-		console.log(`Masonry Element: ${refMasonry.current}`);
 		if (!refMasonry.current) return;
-		const masonry = new Masonry(refMasonry.current, {
+
+		new Masonry(refMasonry.current, {
 			itemSelector: `.${props.itemSelector}`,
 			columnWidth: `.${props.columnWidth}`,
 			gutter: props.gutter,
 			percentPosition: props.percentPosition
 		});
 
-		const imgsLoaded = imagesLoaded(refMasonry.current);
-		imgsLoaded.on("progress", onLoad);
-
-		return () => {
-			masonry.destroy!();
-			imgsLoaded.off("progress", onLoad);
-		};
+		imagesLoaded(refMasonry.current).on("progress", onLoad);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [props]);
 
 	return (
 		<ul className={props.className} ref={refMasonry}>
-			{typeof props.columnWidth === "string" && <div className={props.columnWidth}></div>}
+			{typeof props.columnWidth === "string" && <li className={props.columnWidth}></li>}
 			{props.children}
 		</ul>
 	);
